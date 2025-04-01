@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, onSnapshot } from "firebase/firestore";
 
-// Thay bằng cấu hình từ Firebase Console (tạo project tại firebase.google.com)
 const firebaseConfig = {
   apiKey: "AIzaSyDLGmlRBO0AtFAhKT1OZS8a2TD-ZYbnBuE",
   authDomain: "couple-calendar-f1f1b.firebaseapp.com",
