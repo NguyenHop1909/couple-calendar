@@ -4,7 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { db, collection, addDoc, onSnapshot } from "./firebase";
+import { db, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "./firebase";
 import "./App.css";
 
 function App() {
@@ -18,6 +18,9 @@ function App() {
     note: ""
   });
   const [showModal, setShowModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState("user1"); // Mặc định là "Anh"
+  const [editEvent, setEditEvent] = useState(null); // Lưu sự kiện đang chỉnh sửa
+  const [isEditing, setIsEditing] = useState(false); // Xác định đang ở chế độ chỉnh sửa
 
   // Lấy dữ liệu của "Anh" (user1)
   useEffect(() => {
@@ -62,6 +65,9 @@ function App() {
       end: end,
       note: ""
     });
+    setSelectedUser("user1"); // Mặc định là "Anh" khi thêm mới
+    setIsEditing(false);
+    setEditEvent(null);
     setShowModal(true);
   };
 
@@ -70,7 +76,8 @@ function App() {
     e.preventDefault();
     if (newEvent.title) {
       try {
-        await addDoc(collection(db, "events", "user1", "tasks"), {
+        const userPath = selectedUser === "user1" ? "user1" : "user2";
+        await addDoc(collection(db, "events", userPath, "tasks"), {
           title: newEvent.title,
           start: newEvent.start,
           end: newEvent.end,
@@ -80,6 +87,48 @@ function App() {
         setShowModal(false);
       } catch (error) {
         console.error("Lỗi khi thêm sự kiện:", error);
+        alert("Đã có lỗi xảy ra: " + error.message);
+      }
+    }
+  };
+
+  // Cập nhật sự kiện
+  const handleUpdateEvent = async (e) => {
+    e.preventDefault();
+    if (newEvent.title && editEvent) {
+      try {
+        const userPath = selectedUser === "user1" ? "user1" : "user2";
+        const eventRef = doc(db, "events", userPath, "tasks", editEvent.id);
+        await updateDoc(eventRef, {
+          title: newEvent.title,
+          start: newEvent.start,
+          end: newEvent.end,
+          note: newEvent.note
+        });
+        setNewEvent({ title: "", start: "", end: "", note: "" });
+        setShowModal(false);
+        setIsEditing(false);
+        setEditEvent(null);
+      } catch (error) {
+        console.error("Lỗi khi cập nhật sự kiện:", error);
+        alert("Đã có lỗi xảy ra: " + error.message);
+      }
+    }
+  };
+
+  // Xóa sự kiện
+  const handleDeleteEvent = async () => {
+    if (editEvent) {
+      try {
+        const userPath = selectedUser === "user1" ? "user1" : "user2";
+        const eventRef = doc(db, "events", userPath, "tasks", editEvent.id);
+        await deleteDoc(eventRef);
+        setNewEvent({ title: "", start: "", end: "", note: "" });
+        setShowModal(false);
+        setIsEditing(false);
+        setEditEvent(null);
+      } catch (error) {
+        console.error("Lỗi khi xóa sự kiện:", error);
         alert("Đã có lỗi xảy ra: " + error.message);
       }
     }
@@ -111,62 +160,78 @@ function App() {
               right: "dayGridMonth,timeGridWeek,timeGridDay"
             }}
             dateClick={handleDateClick}
-            eventClick={(info) =>
-              alert(`${info.event.title}\nGhi chú: ${info.event.extendedProps.note || "Không có"}`)
-            }
+            eventClick={(info) => {
+              setEditEvent({
+                id: info.event.id,
+                title: info.event.title,
+                start: info.event.startStr,
+                end: info.event.endStr,
+                note: info.event.extendedProps.note || "",
+                user: info.event.backgroundColor === "blue" ? "user1" : "user2"
+              });
+              setNewEvent({
+                title: info.event.title,
+                start: info.event.startStr,
+                end: info.event.endStr,
+                note: info.event.extendedProps.note || ""
+              });
+              setSelectedUser(info.event.backgroundColor === "blue" ? "user1" : "user2");
+              setIsEditing(true);
+              setShowModal(true);
+            }}
           />
         </div>
 
         {showModal && (
           <div className="modal">
             <div className="modal-content">
-              <h2>Thêm công việc</h2>
-              <form onSubmit={handleAddEvent}>
+              <h2>{isEditing ? "Chỉnh sửa công việc" : "Thêm công việc"}</h2>
+              <form onSubmit={isEditing ? handleUpdateEvent : handleAddEvent}>
+                <select
+                  value={selectedUser}
+                  onChange={(e) => setSelectedUser(e.target.value)}
+                  disabled={isEditing}
+                >
+                  <option value="user1">Anh</option>
+                  <option value="user2">Em (Ngân)</option>
+                </select>
                 <input
                   type="text"
                   placeholder="Tên công việc"
                   value={newEvent.title}
-                  onChange={(e) => {
-                    console.log("Title:", e.target.value);
-                    setNewEvent({ ...newEvent, title: e.target.value });
-                  }}
+                  onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
                   autoFocus
                 />
                 <input
-                  type="text" // Thay tạm để debug
+                  type="datetime-local"
                   value={newEvent.start}
-                  onChange={(e) => {
-                    console.log("Start:", e.target.value);
-                    setNewEvent({ ...newEvent, start: e.target.value });
-                  }}
+                  onChange={(e) => setNewEvent({ ...newEvent, start: e.target.value })}
+                  step="60"
                 />
                 <input
-                  type="text" // Thay tạm để debug
+                  type="datetime-local"
                   value={newEvent.end}
-                  onChange={(e) => {
-                    console.log("End:", e.target.value);
-                    setNewEvent({ ...newEvent, end: e.target.value });
-                  }}
+                  onChange={(e) => setNewEvent({ ...newEvent, end: e.target.value })}
+                  step="60"
                 />
                 <textarea
                   placeholder="Ghi chú"
                   value={newEvent.note}
-                  onChange={(e) => {
-                    console.log("Note:", e.target.value);
-                    setNewEvent({ ...newEvent, note: e.target.value });
-                  }}
+                  onChange={(e) => setNewEvent({ ...newEvent, note: e.target.value })}
                 />
-                <button
-                  type="submit"
-                  onClick={() => console.log("Nút Lưu được nhấn")}
-                >
-                  Lưu
-                </button>
+                <button type="submit">{isEditing ? "Cập nhật" : "Lưu"}</button>
+                {isEditing && (
+                  <button type="button" onClick={handleDeleteEvent}>
+                    Xóa
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={() => {
-                    console.log("Nút Đóng được nhấn");
                     setShowModal(false);
+                    setIsEditing(false);
+                    setEditEvent(null);
+                    setNewEvent({ title: "", start: "", end: "", note: "" });
                   }}
                 >
                   Đóng
