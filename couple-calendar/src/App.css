@@ -133,3 +133,40 @@
   font-size: 16px;
   font-weight: bold;
 }
+
+/* Modal chọn vai trò */
+.modal-content h2 {
+  margin-top: 0;
+  color: #ff69b4;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  text-align: center;
+}
+
+.button-group button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  transition: background 0.3s;
+  flex: 1;
+  margin: 0 5px;
+}
+
+.button-group button:first-child {
+  background: #1E90FF; /* Xanh dương đậm cho Anh */
+  color: white;
+}
+
+.button-group button:first-child:hover {
+  background: #3AA8FF;
+}
+
+.button-group button:last-child {
+  background: #FF69B4; /* Hồng đậm cho Em */
+  color: white;
+}
+
+.button-group button:last-child:hover {
+  background: #FF85C0;
+}
