@@ -1,10 +1,11 @@
+/* Modal */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 192, 203, 0.3); /* Màu hồng phấn mờ */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,14 +13,20 @@
 }
 
 .modal-content {
-  background: white;
+  background: #fff0f5; /* Màu hồng nhạt */
   padding: 20px;
-  border-radius: 5px;
-  width: 400px;
+  border-radius: 15px;
+  width: 450px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ff69b4; /* Viền hồng đậm */
+  position: relative;
 }
 
 .modal-content h2 {
   margin-top: 0;
+  color: #ff69b4; /* Màu hồng đậm */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; /* Font dễ thương */
+  text-align: center;
 }
 
 .modal-content form {
@@ -27,17 +34,47 @@
   flex-direction: column;
 }
 
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ff69b4;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 14px;
+}
+
+.modal-content select,
 .modal-content input,
 .modal-content textarea {
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  pointer-events: auto;
-  outline: none;
   width: 100%;
-  min-width: 200px;
+  padding: 8px;
+  border: 2px solid #ffb6c1; /* Viền hồng nhạt */
+  border-radius: 10px;
   box-sizing: border-box;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  background: #fff; /* Nền trắng */
+  transition: border-color 0.3s;
+}
+
+.modal-content input[type="date"],
+.modal-content input[type="time"] {
+  width: 48%;
+  display: inline-block;
+  margin-right: 4%;
+}
+
+.modal-content input[type="time"] {
+  margin-right: 0;
+}
+
+.modal-content select:focus,
+.modal-content input:focus,
+.modal-content textarea:focus {
+  border-color: #ff69b4; /* Viền hồng đậm khi focus */
+  outline: none;
 }
 
 .modal-content textarea {
@@ -45,25 +82,54 @@
   resize: vertical;
 }
 
-.modal-content input:focus,
-.modal-content textarea:focus {
-  border-color: #007bff;
+.button-group {
+  display: flex;
+  justify-content: space-between;
 }
 
 .modal-content button {
   padding: 10px;
-  margin-right: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  transition: background 0.3s;
 }
 
 .modal-content button[type="submit"] {
-  background: #007bff;
+  background: #ff69b4; /* Màu hồng đậm */
   color: white;
+  flex: 1;
+  margin-right: 5px;
 }
 
-.modal-content button[type="button"] {
-  background: #6c757d;
+.modal-content button[type="submit"]:hover {
+  background: #ff85c0;
+}
+
+.modal-content button[type="button"]:nth-child(2) { /* Nút Xóa */
+  background: #ff4040; /* Màu đỏ */
   color: white;
+  flex: 1;
+  margin-right: 5px;
+}
+
+.modal-content button[type="button"]:nth-child(2):hover {
+  background: #ff6666;
+}
+
+.modal-content button[type="button"]:last-child { /* Nút Đóng */
+  background: #6c757d; /* Màu xám */
+  color: white;
+  flex: 1;
+}
+
+.modal-content button[type="button"]:last-child:hover {
+  background: #8a9299;
+}
+
+.required {
+  color: #ff4040; /* Màu đỏ */
+  font-size: 16px;
+  font-weight: bold;
 }
