@@ -59,15 +59,48 @@
   transition: border-color 0.3s;
 }
 
-.modal-content input[type="date"],
-.modal-content input[type="time"] {
+.modal-content input[type="date"] {
   width: 48%;
   display: inline-block;
   margin-right: 4%;
 }
 
-.modal-content input[type="time"] {
-  margin-right: 0;
+/* Style cho DatePicker (ngày) */
+.date-picker {
+  width: 48% !important;
+  display: inline-block !important;
+  margin-right: 4% !important;
+  padding: 8px !important;
+  border: 2px solid #ffb6c1 !important;
+  border-radius: 10px !important;
+  box-sizing: border-box !important;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
+  background: #fff !important;
+  color: #ff69b4 !important;
+}
+
+.date-picker:focus {
+  border-color: #ff69b4 !important;
+  outline: none !important;
+}
+
+/* Style cho input[type="time"] (giờ) */
+.time-picker {
+  width: 48% !important;
+  display: inline-block !important;
+  margin-right: 0 !important;
+  padding: 8px !important;
+  border: 2px solid #ffb6c1 !important;
+  border-radius: 10px !important;
+  box-sizing: border-box !important;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif !important;
+  background: #fff !important;
+  color: #ff69b4 !important;
+}
+
+.time-picker:focus {
+  border-color: #ff69b4 !important;
+  outline: none !important;
 }
 
 .modal-content select:focus,
@@ -169,4 +202,789 @@
 
 .button-group button:last-child:hover {
   background: #FF85C0;
+}
+
+/* Login modal */
+.login-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff0f5;
+  padding: 20px;
+  border-radius: 15px;
+  width: 350px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ff69b4;
+}
+
+.login-modal h2 {
+  margin: 40px 0 15px; /* Tăng margin-top để tránh bị che bởi toggle-buttons */
+  color: #ff69b4;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  text-align: center;
+}
+
+.login-modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-modal .form-group {
+  margin-bottom: 15px;
+}
+
+.login-modal label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ff69b4;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 14px;
+}
+
+.login-modal input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #ffb6c1;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  background: #fff;
+  transition: border-color 0.3s;
+}
+
+.login-modal input:focus {
+  border-color: #ff69b4;
+  outline: none;
+}
+
+.login-modal button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  background: #ff69b4;
+  color: white;
+  transition: background 0.3s;
+}
+
+.login-modal button:hover {
+  background: #ff85c0;
+}
+
+/* Logout button */
+.logout-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.logout-button button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  background: #ff4040;
+  color: white;
+  transition: background 0.3s;
+}
+
+.logout-button button:hover {
+  background: #ff6666;
+}
+
+/* Mặc định (light mode) */
+body.light {
+  background: #fff0f5; /* Màu hồng nhạt */
+  color: #333;
+}
+
+body.light .app {
+  background: #fff0f5;
+}
+
+body.light .modal-content {
+  background: #fff0f5;
+  border: 2px solid #ff69b4;
+}
+
+body.light .login-modal {
+  background: #fff0f5;
+  border: 2px solid #ff69b4;
+}
+
+body.light .calendar {
+  background: #fff0f5;
+}
+
+body.light .sidebar {
+  background: #fff0f5;
+}
+
+/* Dark mode */
+body.dark {
+  background: #2c2c2c; /* Màu xám đậm */
+  color: #f0f0f0;
+}
+
+body.dark .app {
+  background: #2c2c2c;
+}
+
+body.dark .modal-content {
+  background: #3c3c3c; /* Màu xám nhạt hơn */
+  border: 2px solid #ff85c0;
+}
+
+body.dark .modal-content h2,
+body.dark .modal-content label {
+  color: #ff85c0; /* Màu hồng nhạt */
+}
+
+body.dark .modal-content input,
+body.dark .modal-content textarea,
+body.dark .modal-content select {
+  background: #4a4a4a;
+  color: #f0f0f0;
+  border: 2px solid #ff85c0;
+}
+
+body.dark .modal-content .date-picker {
+  background: #4a4a4a !important;
+  border: 2px solid #ff85c0 !important;
+  color: #ff85c0 !important;
+}
+
+body.dark .modal-content .time-picker {
+  background: #4a4a4a !important;
+  border: 2px solid #ff85c0 !important;
+  color: #ff85c0 !important;
+}
+
+body.dark .login-modal {
+  background: #3c3c3c;
+  border: 2px solid #ff85c0;
+}
+
+body.dark .login-modal h2,
+body.dark .login-modal label {
+  color: #ff85c0;
+}
+
+body.dark .login-modal input {
+  background: #4a4a4a;
+  color: #f0f0f0;
+  border: 2px solid #ff85c0;
+}
+
+body.dark .calendar {
+  background: #2c2c2c;
+}
+
+body.dark .sidebar {
+  background: #2c2c2c;
+  color: #f0f0f0;
+}
+
+body.dark .fc {
+  color: #f0f0f0;
+}
+
+body.dark .fc .fc-daygrid-day {
+  background: #3c3c3c;
+}
+
+body.dark .fc .fc-day-today {
+  background: #ff85c0 !important; /* Màu hồng nhạt cho ô "today" */
+}
+
+body.dark .fc .fc-day-today .fc-daygrid-day-number {
+  color: #fff !important; /* Màu trắng cho số trong ô "today" */
+}
+
+body.dark .fc .fc-daygrid-day-number,
+body.dark .fc .fc-col-header-cell-cushion {
+  color: #f0f0f0;
+}
+
+body.dark .fc .fc-button {
+  background: #ff85c0;
+  color: #f0f0f0;
+}
+
+body.dark .fc .fc-button:hover {
+  background: #ff69b4;
+}
+
+/* Error Modal (Khung thông báo lỗi đăng nhập) */
+.error-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 192, 203, 0.5); /* Màu hồng phấn mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.error-modal-content {
+  background: #fff0f5; /* Màu hồng nhạt */
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ff69b4; /* Viền hồng đậm */
+  animation: shake 0.5s ease-in-out;
+}
+
+.error-modal-content p {
+  margin: 0 0 15px;
+  color: #ff69b4; /* Màu hồng đậm */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.error-modal-content button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  background: #ff69b4; /* Màu hồng đậm */
+  color: white;
+  transition: background 0.3s;
+}
+
+.error-modal-content button:hover {
+  background: #ff85c0; /* Màu hồng nhạt khi hover */
+}
+
+/* Hiệu ứng rung nhẹ */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Dark mode cho error modal */
+body.dark .error-modal {
+  background: rgba(44, 44, 44, 0.8); /* Màu xám đậm mờ */
+}
+
+body.dark .error-modal-content {
+  background: #3c3c3c; /* Màu xám nhạt hơn */
+  border: 2px solid #ff85c0;
+}
+
+body.dark .error-modal-content p {
+  color: #ff85c0; /* Màu hồng nhạt */
+}
+
+body.dark .error-modal-content button {
+  background: #ff85c0; /* Màu hồng nhạt */
+}
+
+body.dark .error-modal-content button:hover {
+  background: #ff69b4; /* Màu hồng đậm khi hover */
+}
+
+/* Success Modal (Khung thông báo đăng nhập thành công) */
+.success-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 192, 203, 0.5); /* Màu hồng phấn mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.success-modal-content {
+  background: #fff0f5; /* Màu hồng nhạt */
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ff69b4; /* Viền hồng đậm */
+  animation: shake 0.5s ease-in-out;
+}
+
+.success-modal-content p {
+  margin: 0 0 15px;
+  color: #ff69b4; /* Màu hồng đậm */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.success-modal-content button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  background: #ff69b4; /* Màu hồng đậm */
+  color: white;
+  transition: background 0.3s;
+}
+
+.success-modal-content button:hover {
+  background: #ff85c0; /* Màu hồng nhạt khi hover */
+}
+
+/* Dark mode cho success modal */
+body.dark .success-modal {
+  background: rgba(44, 44, 44, 0.8); /* Màu xám đậm mờ */
+}
+
+body.dark .success-modal-content {
+  background: #3c3c3c; /* Màu xám nhạt hơn */
+  border: 2px solid #ff85c0;
+}
+
+body.dark .success-modal-content p {
+  color: #ff85c0; /* Màu hồng nhạt */
+}
+
+body.dark .success-modal-content button {
+  background: #ff85c0; /* Màu hồng nhạt */
+}
+
+body.dark .success-modal-content button:hover {
+  background: #ff69b4; /* Màu hồng đậm khi hover */
+}
+
+/* Dòng chữ "I Love You So Much" */
+.love-message {
+  text-align: center;
+  margin: 10px 0;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 24px;
+  color: #ff69b4; /* Màu hồng đậm */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  animation: blink 1.5s infinite;
+}
+
+/* Hiệu ứng nhấp nháy */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Dark mode cho dòng chữ */
+body.dark .love-message {
+  color: #ff85c0; /* Màu hồng nhạt */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Style cho màn hình đăng nhập */
+.login-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff0f5; /* Màu hồng nhạt */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  border: 2px solid #ff69b4; /* Viền hồng đậm */
+}
+
+.login-modal h2 {
+  margin: 40px 0 15px; /* Tăng margin-top để tránh bị che bởi toggle-buttons */
+  color: #ff69b4; /* Màu hồng đậm */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 20px;
+}
+
+.login-modal .form-group {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.login-modal .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ff69b4; /* Màu hồng đậm */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 16px;
+}
+
+.login-modal .form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ff69b4; /* Viền hồng đậm */
+  border-radius: 5px;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  background: #fff; /* Nền trắng */
+  color: #333;
+  font-size: 14px;
+}
+
+.login-modal button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  background: #ff69b4; /* Màu hồng đậm */
+  color: white;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.login-modal button[type="submit"]:hover {
+  background: #ff85c0; /* Màu hồng nhạt khi hover */
+}
+
+/* Dark mode cho màn hình đăng nhập */
+body.dark .login-modal {
+  background: #3c3c3c; /* Màu xám đậm */
+  border: 2px solid #ff85c0; /* Viền hồng nhạt */
+}
+
+body.dark .login-modal h2 {
+  color: #ff85c0; /* Màu hồng nhạt */
+}
+
+body.dark .login-modal .form-group label {
+  color: #ff85c0; /* Màu hồng nhạt */
+}
+
+body.dark .login-modal .form-group input {
+  background: #2c2c2c; /* Nền xám đậm hơn */
+  border: 1px solid #ff85c0; /* Viền hồng nhạt */
+  color: #fff; /* Chữ trắng */
+}
+
+body.dark .login-modal button[type="submit"] {
+  background: #ff85c0; /* Màu hồng nhạt */
+}
+
+body.dark .login-modal button[type="submit"]:hover {
+  background: #ff69b4; /* Màu hồng đậm khi hover */
+}
+
+/* Style cho nhóm nút chuyển đổi (Dark Mode và Language) */
+.toggle-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Khoảng cách giữa hai nút */
+}
+
+/* Style cho nút chuyển đổi chế độ sáng/tối */
+.theme-toggle button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 14px;
+  background: #ff69b4; /* Màu hồng đậm */
+  color: white;
+  transition: background 0.3s;
+}
+
+.theme-toggle button:hover {
+  background: #ff85c0; /* Màu hồng nhạt khi hover */
+}
+
+/* Dark mode cho nút chuyển đổi chế độ sáng/tối */
+body.dark .theme-toggle button {
+  background: #ff85c0; /* Màu hồng nhạt */
+}
+
+body.dark .theme-toggle button:hover {
+  background: #ff69b4; /* Màu hồng đậm khi hover */
+}
+
+/* Style cho nút chuyển đổi ngôn ngữ */
+.language-toggle {
+  display: inline-block;
+}
+
+.language-toggle button {
+  background: #ff85c0; /* Nền hồng nhạt */
+  color: white; /* Chữ trắng */
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.language-toggle button:hover {
+  background: #ff69b4; /* Nền hồng đậm khi hover */
+}
+
+/* Dark mode cho nút chuyển đổi ngôn ngữ */
+body.dark .language-toggle button {
+  background: #ff85c0; /* Giữ màu hồng nhạt */
+  color: white;
+}
+
+body.dark .language-toggle button:hover {
+  background: #ff69b4; /* Nền hồng đậm khi hover */
+}
+
+/* Style cho nút trong logout-button để đồng bộ */
+.logout-button button:not(:last-child) {
+  margin-right: 8px; /* Khoảng cách giữa các nút trong logout-button */
+}
+
+.logout-button .theme-toggle,
+.logout-button .language-toggle {
+  display: inline-block;
+}
+
+.logout-button .theme-toggle button,
+.logout-button .language-toggle button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 14px;
+  background: #ff4040; /* Màu cam đậm */
+  color: white;
+  transition: background 0.3s;
+}
+
+.logout-button .theme-toggle button:hover,
+.logout-button .language-toggle button:hover {
+  background: #ff85c0; /* Màu hồng nhạt khi hover */
+}
+
+body.dark .logout-button .theme-toggle button,
+body.dark .logout-button .language-toggle button {
+  background: #ff85c0; /* Màu hồng nhạt */
+}
+
+body.dark .logout-button .theme-toggle button:hover,
+body.dark .logout-button .language-toggle button:hover {
+  background: #ff69b4; /* Màu hồng đậm khi hover */
+}
+
+/* Style cho sidebar */
+.sidebar {
+  background: #fff0f5; /* Màu hồng nhạt */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Căn giữa theo chiều ngang */
+  justify-content: flex-start; /* Căn đầu theo chiều dọc */
+}
+
+/* Style cho tiêu đề "Lịch của chúng mình" */
+.sidebar-title {
+  margin: 20px 0; /* Khoảng cách trên dưới */
+  color: #ff69b4; /* Màu hồng đậm */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 35px; /* Tăng kích thước chữ */
+  font-weight: bold; /* Làm đậm */
+  text-align: center; /* Căn giữa */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Thêm bóng chữ */
+}
+
+/* Style cho nhãn "Lịch của Em Bé Bì 💖" */
+.partner-calendar-label {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  margin: 10px 0;
+}
+
+.partner-calendar-label input[type="checkbox"] {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  accent-color: #ff69b4; /* Màu hồng đậm cho checkbox */
+}
+
+.partner-calendar-text {
+  color: #ff69b4; /* Màu hồng đậm */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 22px; /* Tăng kích thước chữ */
+  font-weight: 500; /* Làm đậm nhẹ */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Thêm bóng chữ */
+  /* animation: blink 1.5s infinite; Thêm hiệu ứng nhấp nháy */
+}
+
+/* Hiệu ứng nhấp nháy */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Dark mode cho sidebar */
+body.dark .sidebar {
+  background: #3c3c3c; /* Màu xám đậm */
+}
+
+body.dark .sidebar-title {
+  color: #ff85c0; /* Màu hồng nhạt */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1); /* Bóng chữ sáng hơn */
+}
+
+body.dark .partner-calendar-text {
+  color: #ff85c0; /* Màu hồng nhạt */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1); /* Bóng chữ sáng hơn */
+}
+
+body.dark .partner-calendar-label input[type="checkbox"] {
+  accent-color: #ff85c0; /* Màu hồng nhạt cho checkbox */
+}
+
+/* Style cho khung thông báo lỗi về ngày */
+.date-error-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.date-error-modal-content {
+  background: #fff0f5; /* Nền hồng nhạt */
+  border: 2px solid #ff69b4; /* Viền hồng đậm */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.date-error-modal-content p {
+  color: #ff69b4; /* Chữ hồng đậm */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 18px;
+  margin: 0 0 15px;
+  animation: blink 1.5s infinite; /* Hiệu ứng nhấp nháy */
+}
+
+.date-error-modal-content button {
+  background: #ff69b4; /* Nền nút hồng đậm */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.date-error-modal-content button:hover {
+  background: #ff85c0; /* Nền nút hồng nhạt khi hover */
+}
+
+/* Dark mode cho khung thông báo lỗi về ngày */
+body.dark .date-error-modal-content {
+  background: #3c3c3c; /* Nền xám đậm */
+  border: 2px solid #ff85c0; /* Viền hồng nhạt */
+}
+
+body.dark .date-error-modal-content p {
+  color: #ff85c0; /* Chữ hồng nhạt */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1); /* Bóng chữ sáng hơn */
+}
+
+body.dark .date-error-modal-content button {
+  background: #ff85c0; /* Nền nút hồng nhạt */
+}
+
+body.dark .date-error-modal-content button:hover {
+  background: #ff69b4; /* Nền nút hồng đậm khi hover */
+}
+
+/* Style cho khung thông báo lỗi về tên công việc */
+.title-error-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.title-error-modal-content {
+  background: #fff0f5; /* Nền hồng nhạt */
+  border: 2px solid #ff69b4; /* Viền hồng đậm */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.title-error-modal-content p {
+  color: #ff69b4; /* Chữ hồng đậm */
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 18px;
+  margin: 0 0 15px;
+  animation: blink 1.5s infinite; /* Hiệu ứng nhấp nháy */
+}
+
+.title-error-modal-content button {
+  background: #ff69b4; /* Nền nút hồng đậm */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.title-error-modal-content button:hover {
+  background: #ff85c0; /* Nền nút hồng nhạt khi hover */
+}
+
+/* Dark mode cho khung thông báo lỗi về tên công việc */
+body.dark .title-error-modal-content {
+  background: #3c3c3c; /* Nền xám đậm */
+  border: 2px solid #ff85c0; /* Viền hồng nhạt */
+}
+
+body.dark .title-error-modal-content p {
+  color: #ff85c0; /* Chữ hồng nhạt */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1); /* Bóng chữ sáng hơn */
+}
+
+body.dark .title-error-modal-content button {
+  background: #ff85c0; /* Nền nút hồng nhạt */
+}
+
+body.dark .title-error-modal-content button:hover {
+  background: #ff69b4; /* Nền nút hồng đậm khi hover */
 }

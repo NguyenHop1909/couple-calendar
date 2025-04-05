@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "couple-calendar-f1f1b"
+  },
+  "targets": {
+    "couple-calendar-f1f1b": {
+      "hosting": {
+        "couple-calendar-f1f1b": [
+          "couple-calendar-f1f1b"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
